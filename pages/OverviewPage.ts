@@ -24,7 +24,8 @@ export class CheckOutOverview {
   // }
 
   async verifyShoppingCart(product: string) {
-    await checkCorrectPage('checkout-step-two.html');
+   await checkCorrectPage(this.page, 'checkout-step-two.html');
+
     const productNameInCart = await this.page.locator('div[class="inventory_item_name"]').textContent();
 
     // Verify the product name

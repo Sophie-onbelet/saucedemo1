@@ -1,6 +1,10 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module",     // Allows for the use of imports
+      "project": "./tsconfig.json" // Specify the path to your tsconfig.json file
+    },
     "plugins": [
       "@typescript-eslint"
     ],
@@ -9,6 +13,17 @@
       "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
       "prettier"
-    ]
+    ],
+    "rules": {
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // https://typescript-eslint.io/rules/no-unused-vars
+     "@typescript-eslint/naming-convention": "error",           // https://typescript-eslint.io/rules/naming-convention/
+    "@typescript-eslint/explicit-function-return-type": "off",  // Disable explicit return type rule
+    "@typescript-eslint/no-explicit-any": "warn",               // Warn on usage of the any type
+    "@typescript-eslint/no-inferrable-types": "off",            // Allow explicit types on initialisation
+    "require-await": "off",                                     // Note: you must disable the base rule as it can report incorrect errors
+    "@typescript-eslint/require-await": "error",                // https://typescript-eslint.io/rules/require-await/
+    "curly": "error"                                            // Require curly braces for all control statements
   }
+}
+  
   

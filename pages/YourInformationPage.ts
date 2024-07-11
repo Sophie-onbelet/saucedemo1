@@ -36,21 +36,23 @@ export class YourInformationPage {
     return new CheckOutOverview(this.page);
   }
 
-  async leaveOutFirstName(user: User) {
-    await this.lastName.fill(user.lastName);
-    await this.postalCode.fill(user.postalCode);
+  async checkInformationErrors(user: User){
+    await this.leaveOutFirstName();
+    await this.leaveOutLastName(user);
+    await this.leaveOutPostalCode(user)
+  }
+
+  async leaveOutFirstName() {
     await this.continueButton.click();
     await expect(this.errorMessage).toHaveText(errorMessages.Firstname);
   }
   
   async leaveOutLastName(user: User) {
     await this.firstName.fill(user.firstName);
-    await this.postalCode.fill(user.postalCode);
     await this.continueButton.click();
     await expect(this.errorMessage).toHaveText(errorMessages.Lastname);
   }
   async leaveOutPostalCode(user: User) {
-    await this.firstName.fill(user.firstName);
     await this.lastName.fill(user.lastName);
     await this.continueButton.click();
     await expect(this.errorMessage).toHaveText(errorMessages.Postalcode);
