@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/LoginPage';
 import { User } from '../models/User';
 import { products } from '../json/products.json';
 
@@ -13,7 +13,6 @@ test.describe('test saucedemo website', () => {
     const productsPage = await loginPage.fillLogin(process.env.STANDARD_USER!, process.env.PASSWORD!);
 
     //Add 1 item to your cart
-    await productsPage.checkCorrectPage();
     await productsPage.addProductToCart(products[0].id);
     const shoppingCartPage = await productsPage.goToShoppingCart();
 
@@ -24,7 +23,6 @@ test.describe('test saucedemo website', () => {
    // await checkOutOverviewPage.checkCorrectPage('checkout-step-two.html');
     await checkOutOverviewPage.verifyShoppingCart(products[0].name);
     const checkOutCompletePage = await checkOutOverviewPage.checkOutShoppingCart();
-    await checkOutCompletePage.checkCorrectPage();
     await checkOutCompletePage.checkOrderCompleted();
 
     //Go back to HomePage

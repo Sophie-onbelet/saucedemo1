@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { ShoppingCartPage } from './ShoppingCartPage';
+import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class ProductsPage {
   page: Page;
@@ -20,15 +21,8 @@ export class ProductsPage {
     this.shoppingCart = page.locator('a[class="shopping_cart_link"]');
   }
 
-  async checkCorrectPage() {
-    const currentUrl = this.page.url();
-    const expectedUrl = 'https://www.saucedemo.com/inventory.html';
-    if (currentUrl !== expectedUrl) {
-      return false;
-    }
-  }
-
   async getProductTitles() {
+    await checkCorrectPage(this.page, 'inventory.html');
     return this.productTitle.allTextContents();
   }
 

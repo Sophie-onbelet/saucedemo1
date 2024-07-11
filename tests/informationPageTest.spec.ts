@@ -13,7 +13,6 @@ test.describe('test error messages in your information page', () => {
     const productsPage = await loginPage.fillLogin(process.env.STANDARD_USER!, process.env.PASSWORD!);
 
     //Add 1 item to your cart
-    await productsPage.checkCorrectPage();
     await productsPage.addProductToCart(products[0].id);
     const shoppingCartPage = await productsPage.goToShoppingCart();
 

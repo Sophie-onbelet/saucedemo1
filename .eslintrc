@@ -21,7 +21,6 @@
     "@typescript-eslint/no-explicit-any": "warn",               // Warn on usage of the any type
     "@typescript-eslint/no-inferrable-types": "off",            // Allow explicit types on initialisation
     "require-await": "off",                                     // Note: you must disable the base rule as it can report incorrect errors
-    "@typescript-eslint/require-await": "error",                // https://typescript-eslint.io/rules/require-await/
     "curly": "error"                                            // Require curly braces for all control statements
   }
 }

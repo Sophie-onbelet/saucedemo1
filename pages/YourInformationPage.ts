@@ -2,6 +2,7 @@ import { Locator, Page, expect } from '@playwright/test';
 import { User } from '../models/User';
 import { CheckOutOverview } from '../pages/OverviewPage';
 import { errorMessages } from '../data/error-messages/error-messages';
+import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class YourInformationPage {
   page: Page;
@@ -20,15 +21,8 @@ export class YourInformationPage {
     this.continueButton = page.locator('input[id="continue"]');
   }
 
-  async checkCorrectPage() {
-    const currentUrl = this.page.url();
-    const expectedUrl = 'https://www.saucedemo.com/checkout-step-one.html';
-    if (currentUrl !== expectedUrl) {
-      return false;
-    }
-  }
-
   async fillCheckOutInformation(user: User) {
+    await checkCorrectPage(this.page, 'checkout-step-one.html');
     await this.firstName.fill(user.firstName);
     await this.lastName.fill(user.lastName);
     await this.postalCode.fill(user.postalCode);
@@ -36,17 +30,17 @@ export class YourInformationPage {
     return new CheckOutOverview(this.page);
   }
 
-  async checkInformationErrors(user: User){
+  async checkInformationErrors(user: User) {
     await this.leaveOutFirstName();
     await this.leaveOutLastName(user);
-    await this.leaveOutPostalCode(user)
+    await this.leaveOutPostalCode(user);
   }
 
   async leaveOutFirstName() {
     await this.continueButton.click();
     await expect(this.errorMessage).toHaveText(errorMessages.Firstname);
   }
-  
+
   async leaveOutLastName(user: User) {
     await this.firstName.fill(user.firstName);
     await this.continueButton.click();

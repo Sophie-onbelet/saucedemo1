@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { CheckOutCompletePage } from './CheckOutCompletePage';
-import { checkCorrectPage } from '../helpers/helpers';
+import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class CheckOutOverview {
   page: Page;
@@ -13,18 +13,8 @@ export class CheckOutOverview {
     this.finishButton = page.locator('button[id="finish"]');
   }
 
-  //async checkCorrectPage(page: string);
-
-  // async checkCorrectPage() {
-  //   const currentUrl = this.page.url();
-  //   const expectedUrl = 'https://www.saucedemo.com/checkout-step-two.html';
-  //   if (currentUrl !== expectedUrl) {
-  //     return false;
-  //   }
-  // }
-
   async verifyShoppingCart(product: string) {
-   await checkCorrectPage(this.page, 'checkout-step-two.html');
+    await checkCorrectPage(this.page, 'checkout-step-two.html');
 
     const productNameInCart = await this.page.locator('div[class="inventory_item_name"]').textContent();
 
