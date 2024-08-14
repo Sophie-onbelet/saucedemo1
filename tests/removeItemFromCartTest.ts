@@ -2,8 +2,8 @@ import { test } from '@playwright/test';
 import { products } from '../json/products.json';
 import { LoginPage } from '../pages/LoginPage';
 
-test.describe('test delete item', () => {
-  test('Verify that user can delete item', async ({ page }) => {
+test.describe('Remove item from cart tests', () => {
+  test('Verify that user can remove an item from the cart', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     //Login with standard user
