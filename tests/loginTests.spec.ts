@@ -3,12 +3,15 @@ import { LoginPage } from '../pages/LoginPage';
 
 test.describe('test saucedemo website', () => {
   test('Verify that the user gets locked out message', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+    const credentials = {
+      username: 'locked_out_user',
+      password: 'secret_sauce',
+    };
     const errorText = 'Epic sadface: Sorry, this user has been locked out.';
 
-    await loginPage.goToSaucePage();
-    await loginPage.fillLogin(process.env.LOCKEDOUT_USER!, process.env.PASSWORD!);
+    const loginPage = new LoginPage(page);
+    await loginPage.login(credentials.username, credentials.password);
 
-    await loginPage.lockedOutMessage(errorText);
+    await loginPage.validateLoginErrorMessage(errorText);
   });
 });

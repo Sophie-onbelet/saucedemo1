@@ -2,17 +2,19 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { User } from '../models/User';
 import { products } from '../json/products.json';
+import { config } from '../config';
+import { ProductsPage } from '../pages/ProductsPage';
+
+test.beforeEach(async ({ page }) => {
+  await new LoginPage(page).login(config.validUser, config.password);
+});
 
 test.describe('test saucedemo website', () => {
   test('Verify that user can complete a purchase', async ({ page }) => {
-    const loginPage = new LoginPage(page);
     const user = new User();
 
-    //Login with standard user
-    await loginPage.goToSaucePage();
-    const productsPage = await loginPage.fillLogin(process.env.STANDARD_USER!, process.env.PASSWORD!);
-
     //Add 1 item to your cart
+    const productsPage = new ProductsPage(page);
     await productsPage.addProductToCart(products[0].id);
     const shoppingCartPage = await productsPage.goToShoppingCart();
 
@@ -20,7 +22,6 @@ test.describe('test saucedemo website', () => {
     await shoppingCartPage.verifyShoppingCart(products[0].name);
     const yourInformationPage = await shoppingCartPage.checkOutShoppingCart();
     const checkOutOverviewPage = await yourInformationPage.fillCheckOutInformation(user);
-   // await checkOutOverviewPage.checkCorrectPage('checkout-step-two.html');
     await checkOutOverviewPage.verifyShoppingCart(products[0].name);
     const checkOutCompletePage = await checkOutOverviewPage.checkOutShoppingCart();
     await checkOutCompletePage.checkOrderCompleted();

@@ -1,34 +1,27 @@
-import { Locator, Page, expect } from '@playwright/test';
-import { ProductsPage } from '../pages/ProductsPage';
-
-export class LoginPage {
-  page: Page;
+import { Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
+export class LoginPage extends BasePage {
   username: Locator;
   password: Locator;
   submit: Locator;
-  errorMessage: Locator;
+  errorMessageLocator: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.username = page.locator('input[name="user-name"]');
     this.password = page.locator('input[name="password"]');
     this.submit = page.locator('input[id="login-button"]');
-    this.errorMessage = page.locator('[data-test="error"]');
+    this.errorMessageLocator = page.locator('[data-test="error"]');
   }
 
-  async goToSaucePage() {
+  async login(username: string, password: string) {
     await this.page.goto('https://www.saucedemo.com/');
-  }
-
-  async fillLogin(username: string, password: string) {
     await this.username.fill(username);
     await this.password.fill(password);
     await this.submit.click();
-    return new ProductsPage(this.page);
   }
 
-  async lockedOutMessage(message: string) {
-    await expect(this.errorMessage).toBeVisible();
-    await expect(this.errorMessage).toHaveText(message);
+  async validateLoginErrorMessage(message: string) {
+    await this.validateErrorMessage(this.errorMessageLocator, message);
   }
 }
