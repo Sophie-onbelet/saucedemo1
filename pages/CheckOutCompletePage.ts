@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { succesMessages } from '../data/checkout-messages/SuccesMessages';
+import { SuccesMessages } from '../data/checkout-messages/SuccesMessages';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class CheckOutCompletePage {
@@ -21,10 +21,10 @@ export class CheckOutCompletePage {
 
   async checkOrderCompleted() {
     await checkCorrectPage(this.page, 'checkout-complete.html');
-    await expect(this.checkOutTitle).toHaveText(succesMessages.Complete);
+    await expect(this.checkOutTitle).toHaveText(SuccesMessages.complete);
     await expect(this.completedContainer).toBeVisible();
-    await expect(this.completeHeader).toHaveText(succesMessages.Thankyou);
-    await expect(this.completeText).toHaveText(succesMessages.Dispatch);
+    await expect(this.completeHeader).toHaveText(SuccesMessages.thankYou);
+    await expect(this.completeText).toHaveText(SuccesMessages.dispatch);
   }
 
   async goBackHome() {

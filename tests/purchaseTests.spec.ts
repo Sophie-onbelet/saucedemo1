@@ -11,21 +11,21 @@ test.beforeEach(async ({ page }) => {
   await new LoginPage(page).login(config.validUser, config.password);
 });
 
-test.describe('test saucedemo website', () => {
+test.describe('Test the purchase flow', () => {
   test('Verify that user can complete a purchase', async ({ page }) => {
     const user = new User();
     const items : Product[] = [products.backpack, products['bike-light']]
-    //Add 1 item to your cart
-    const productsPage = new ProductsPage(page);
 
+    //Add multiple items to your cart
+    const productsPage = new ProductsPage(page);
     await productsPage.addProductToCart(items);
     const shoppingCartPage = await productsPage.goToShoppingCart();
 
-    //Verify item and proceed check out process
+    //Verify items and proceed check out process
     await shoppingCartPage.verifyShoppingCart(items);
     const yourInformationPage = await shoppingCartPage.checkOutShoppingCart();
     const checkOutOverviewPage = await yourInformationPage.fillCheckOutInformation(user);
-    await checkOutOverviewPage.verifyShoppingCart(products.backpack.name);
+    await checkOutOverviewPage.verifyFinalOrder(items);
     const checkOutCompletePage = await checkOutOverviewPage.checkOutShoppingCart();
     await checkOutCompletePage.checkOrderCompleted();
 

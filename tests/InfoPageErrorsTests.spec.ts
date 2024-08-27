@@ -10,13 +10,13 @@ test.beforeEach(async ({ page }) => {
   await new LoginPage(page).login(config.validUser, config.password);
 });
 
-test.describe('test error messages in your information page', () => {
+test.describe('Test error messages in your information page', () => {
   test('Verify that user gets error messages', async ({ page }) => {
     const user = new User();
     const items : Product[] = [products.backpack, products['bike-light']]
-    //Add 1 item to your cart
+    
+    //Add multiple items to your cart
     const productsPage = new ProductsPage(page);
-  
     await productsPage.addProductToCart(items);
     const shoppingCartPage = await productsPage.goToShoppingCart();
 
