@@ -30,13 +30,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Set Environment Variables
-        run: |
-          echo "LOCKEDOUT_USER=${{ secrets.LOCKEDOUT_USER }}" >> $GITHUB_ENV
-          echo "PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
-          echo "STANDARD_USER=${{ secrets.STANDARD_USER }}" >> $GITHUB_ENV
-
       - name: Run Playwright Tests
+        env:
+          LOCKEDOUT_USER: ${{ secrets.LOCKEDOUT_USER }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          STANDARD_USER: ${{ secrets.STANDARD_USER }}
         run: npx playwright test
 
       - name: Upload Test Results

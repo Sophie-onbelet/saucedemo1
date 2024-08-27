@@ -1,15 +1,16 @@
 import { Locator, Page } from '@playwright/test';
 import { ShoppingCartPage } from './ShoppingCartPage';
 import { checkCorrectPage } from '../helpers/CheckUrl';
+import { Product } from '../models/Product';
 
 export class ProductsPage {
-  page: Page;
-  productList: Locator;
-  productItem: Locator;
-  productTitle: Locator;
-  productPrice: Locator;
-  addToCartButton: Locator;
-  shoppingCart: Locator;
+  private readonly page: Page;
+  private readonly productList: Locator;
+  private readonly productItem: Locator;
+  private readonly productTitle: Locator;
+  private readonly productPrice: Locator;
+  private readonly addToCartButton: Locator;
+  private readonly shoppingCart: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -30,32 +31,14 @@ export class ProductsPage {
     return this.productPrice.allTextContents();
   }
 
-  async addProductToCart(product: string) {
-    let productSelector: Locator;
-    switch (product) {
-      case 'sauce-labs-backpack':
-        productSelector = this.page.locator('#add-to-cart-sauce-labs-backpack');
-        break;
-      case 'sauce-labs-bike-light':
-        productSelector = this.page.locator('#add-to-cart-sauce-labs-bike-light');
-        break;
-      case 'sauce-labs-bolt-t-shirt':
-        productSelector = this.page.locator('#add-to-cart-sauce-labs-bolt-t-shirt');
-        break;
-      case 'sauce-labs-fleece-jacket':
-        productSelector = this.page.locator('#add-to-cart-sauce-labs-fleece-jacket');
-        break;
-      case 'sauce-labs-onesie':
-        productSelector = this.page.locator('#add-to-cart-sauce-labs-onesie');
-        break;
-      case 'test.allthethings()-t-shirt-(red)':
-        productSelector = this.page.locator('#add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)');
-        break;
-      default:
-        throw new Error(`Product ID ${product} not recognized.`);
+  async addProductToCart(items: Product[]) {
+    for (const item of items) {
+      const productSelector: Locator = this.page.locator(item.selector);
+      await productSelector.click();
     }
-    await productSelector.click();
   }
+
+ 
 
   async goToShoppingCart() {
     await this.shoppingCart.click();

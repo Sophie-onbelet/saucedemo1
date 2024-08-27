@@ -1,14 +1,14 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { succesMessages } from '../data/checkout-messages/succes-messages';
+import { succesMessages } from '../data/checkout-messages/SuccesMessages';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class CheckOutCompletePage {
-  page: Page;
-  checkOutTitle: Locator;
-  completedContainer: Locator;
-  completeHeader: Locator;
-  completeText: Locator;
-  backHomeButton: Locator;
+  private readonly page: Page;
+  private readonly checkOutTitle: Locator;
+  private readonly completedContainer: Locator;
+  private readonly completeHeader: Locator;
+  private readonly completeText: Locator;
+  private readonly backHomeButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

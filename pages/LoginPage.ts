@@ -1,10 +1,10 @@
 import { Locator, Page } from '@playwright/test';
 import { BasePage } from './BasePage';
 export class LoginPage extends BasePage {
-  username: Locator;
-  password: Locator;
-  submit: Locator;
-  errorMessageLocator: Locator;
+  private readonly username: Locator;
+  private readonly password: Locator;
+  private readonly submit: Locator;
+  private readonly errorMessageLocator: Locator;
 
   constructor(page: Page) {
     super(page);

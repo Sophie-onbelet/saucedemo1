@@ -1,16 +1,16 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { User } from '../models/User';
 import { CheckOutOverview } from '../pages/OverviewPage';
-import { errorMessages } from '../data/error-messages/error-messages';
+import { ErrorMessages } from '../data/error-messages/ErrorMessages';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class YourInformationPage {
-  page: Page;
-  firstName: Locator;
-  lastName: Locator;
-  postalCode: Locator;
-  errorMessage: Locator;
-  continueButton: Locator;
+  private readonly page: Page;
+  private readonly firstName: Locator;
+  private readonly lastName: Locator;
+  private readonly postalCode: Locator;
+  private readonly errorMessage: Locator;
+  private readonly continueButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -38,17 +38,17 @@ export class YourInformationPage {
 
   async leaveOutFirstName() {
     await this.continueButton.click();
-    await expect(this.errorMessage).toHaveText(errorMessages.Firstname);
+    await expect(this.errorMessage).toHaveText(ErrorMessages.firstName);
   }
 
   async leaveOutLastName(user: User) {
     await this.firstName.fill(user.firstName);
     await this.continueButton.click();
-    await expect(this.errorMessage).toHaveText(errorMessages.Lastname);
+    await expect(this.errorMessage).toHaveText(ErrorMessages.lastName);
   }
   async leaveOutPostalCode(user: User) {
     await this.lastName.fill(user.lastName);
     await this.continueButton.click();
-    await expect(this.errorMessage).toHaveText(errorMessages.Postalcode);
+    await expect(this.errorMessage).toHaveText(ErrorMessages.postalCode);
   }
 }

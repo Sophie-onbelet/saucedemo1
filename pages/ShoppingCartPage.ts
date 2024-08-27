@@ -1,12 +1,13 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { YourInformationPage } from './YourInformationPage';
 import { checkCorrectPage } from '../helpers/CheckUrl';
+import { Product } from '../models/Product';
 
 export class ShoppingCartPage {
-  page: Page;
-  inventoryItem: Locator;
-  checkOut: Locator;
-  removeButton: Locator;
+  private readonly page: Page;
+  private readonly inventoryItem: Locator;
+  private readonly checkOut: Locator;
+  private readonly removeButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -15,20 +16,22 @@ export class ShoppingCartPage {
     this.removeButton = page.locator('button[id="remove-$products.id"]');
   }
 
-  async verifyShoppingCart(product: string) {
+  async verifyShoppingCart(items: Product[]) {
     checkCorrectPage(this.page, 'cart.html');
-    const productNameInCart = await this.page.locator('div[class="inventory_item_name"]').textContent();
-
-    // Verify the product name
-    expect(productNameInCart).toBe(product);
+    for (const item of items) {
+    const productNameInCart = this.page.locator(`div[class="inventory_item_name"]`, { hasText: item.name }) //previous locator matched both elemenst
+    expect(productNameInCart).toHaveText(item.name);
+    }
   }
 
-  async deleteItem(productId: string) {
-    const removeButton = this.page.locator(`button[id="remove-${productId}"]`);
+  async deleteItem(items: Product[]) {
+    for (const item of items) {
+    const removeButton = this.page.locator(`button[id="remove-${item.id}"]`);
     await removeButton.click();
-
-    // Verify that the remove button doesn't exists
     await expect(removeButton).toHaveCount(0);
+    }
+    // Verify that the remove button doesn't exists
+    
   }
 
   async checkOutShoppingCart() {

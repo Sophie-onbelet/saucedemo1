@@ -3,9 +3,9 @@ import { CheckOutCompletePage } from './CheckOutCompletePage';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class CheckOutOverview {
-  page: Page;
-  inventoryItem: Locator;
-  finishButton: Locator;
+  private readonly page: Page;
+  private readonly inventoryItem: Locator;
+  private readonly finishButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
