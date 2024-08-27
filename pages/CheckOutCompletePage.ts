@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { SuccesMessages } from '../data/checkout-messages/SuccesMessages';
+import { SuccesMessages } from '../data/CheckoutMessages/SuccesMessages';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class CheckOutCompletePage {

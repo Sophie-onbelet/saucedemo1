@@ -1,7 +1,7 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { User } from '../models/User';
 import { CheckOutOverview } from '../pages/OverviewPage';
-import { ErrorMessages } from '../data/error-messages/ErrorMessages';
+import { ErrorMessages } from '../data/ErrorMessages/ErrorMessages';
 import { checkCorrectPage } from '../helpers/CheckUrl';
 
 export class YourInformationPage {
