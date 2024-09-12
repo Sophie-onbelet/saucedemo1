@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { LoginPage } from '@pages/LoginPage';
 
 test.describe('Test saucedemo website logins', () => {
   test('Verify that the user gets locked out message', async ({ page }) => {

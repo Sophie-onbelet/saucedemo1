@@ -4,11 +4,20 @@
       "module": "commonjs",
       "moduleResolution": "Node",
       "sourceMap": true,
-      "outDir": "../tests-out",
+      "outDir": "./tests-out",
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": ".", 
+      "paths": {
+        "@pages/*": ["pages/*"],      // Matches your 'pages' folder
+        "@models/*": ["models/*"],    // Matches your 'models' folder
+        "@config/*": ["config.ts"],   // Points to config.ts file
+        "@json/*": ["json/*"],        // Matches the 'json' folder
+        "@helpers/*": ["helpers/*"],  // Matches your 'helpers' folder
+        "@data/*": ["data/*"]  
+    }
     },
     "include": [
       "**/*"

@@ -1,7 +1,7 @@
 
 {
   "products": {
-    "backpack": {
+    "back-pack": {
       "id": "sauce-labs-backpack",
       "name": "Sauce Labs Backpack",
       "selector": "#add-to-cart-sauce-labs-backpack"
@@ -21,7 +21,7 @@
       "name": "Sauce Labs Fleece Jacket",
       "selector": "#add-to-cart-sauce-labs-fleece-jacket"
     },
-    "onesie": {
+    "one-sie": {
       "id": "sauce-labs-onesie",
       "name": "Sauce Labs Onesie",
       "selector": "#add-to-cart-sauce-labs-onesie"

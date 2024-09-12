@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "test": "ts-node -r tsconfig-paths/register ./node_modules/@playwright/test/cli.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.45.1",
+    "@playwright/test": "^1.46.1",
     "@types/node": "^20.14.10",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "tsconfig-paths": "^4.2.0"
   }
 }
