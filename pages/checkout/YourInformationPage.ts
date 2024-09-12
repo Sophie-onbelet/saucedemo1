@@ -1,8 +1,8 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { User } from '../models/User';
-import { CheckOutOverview } from '../pages/OverviewPage';
-import { ErrorMessages } from '../data/ErrorMessages/ErrorMessages';
-import { checkCorrectPage } from '../helpers/CheckUrl';
+import { User } from '@models/User';
+import { CheckOutOverview } from '@pages/checkout/OverviewPage';
+import { ErrorMessages } from '@data/ErrorMessages/ErrorMessages';
+import { checkCorrectPage } from '@helpers/CheckUrl';
 
 export class YourInformationPage {
   private readonly page: Page;

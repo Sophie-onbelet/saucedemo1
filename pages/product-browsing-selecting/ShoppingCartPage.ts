@@ -1,7 +1,8 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { YourInformationPage } from './YourInformationPage';
-import { checkCorrectPage } from '../helpers/CheckUrl';
-import { Product } from '../models/Product';
+import { YourInformationPage } from '@pages/checkout/YourInformationPage';
+import { checkCorrectPage } from '@helpers/CheckUrl';
+import { Product } from '@models/Product';
+
 export class ShoppingCartPage {
   private readonly page: Page;
   private readonly checkOut: Locator;

@@ -1,7 +1,8 @@
 import { Locator, Page } from '@playwright/test';
-import { ShoppingCartPage } from './ShoppingCartPage';
-import { checkCorrectPage } from '../helpers/CheckUrl';
-import { Product } from '../models/Product';
+import { ShoppingCartPage } from '@pages/product-browsing-selecting/ShoppingCartPage';
+import { checkCorrectPage } from '@helpers/CheckUrl';
+import { Product } from '@models/Product';
+
 export class ProductsPage {
   private readonly page: Page;
   private readonly productTitle: Locator;

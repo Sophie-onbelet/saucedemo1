@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { SuccesMessages } from '../data/CheckoutMessages/SuccesMessages';
-import { checkCorrectPage } from '../helpers/CheckUrl';
+import { SuccesMessages } from '@data/CheckoutMessages/SuccesMessages';
+import { checkCorrectPage } from '@helpers/CheckUrl';
 
 export class CheckOutCompletePage {
   private readonly page: Page;

@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { products } from '@json/Products.json';
-import { LoginPage } from '@pages/LoginPage';
-import { ProductsPage } from '@pages/ProductsPage';
+import { LoginPage } from '@pages/authentication/LoginPage';  
+import { ProductsPage } from '@pages/product-browsing-selecting/ProductsPage';  
 import { config } from '@config/config';
 import { Product } from '@models/Product';
 

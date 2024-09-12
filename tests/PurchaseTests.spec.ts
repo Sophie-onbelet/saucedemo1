@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '@pages/LoginPage';
+import { LoginPage } from '@pages/authentication/LoginPage';  
 import { User } from '@models/User';
 import { products } from '@json/Products.json';
 import { config } from '@config/config';
-import { ProductsPage } from '@pages/ProductsPage';
+import { ProductsPage } from '@pages/product-browsing-selecting/ProductsPage';
 import { Product } from '@models/Product';
 
 test.beforeEach(async ({ page }) => {
